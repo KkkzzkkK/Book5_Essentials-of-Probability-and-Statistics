@@ -15,7 +15,7 @@ from matplotlib import cm
 def generate_paths(step_num,path_num, p, up_down):
     
     np.random.seed(0)
-    
+
     start_locs = np.zeros((1, path_num))
 
     # random walk
@@ -23,9 +23,7 @@ def generate_paths(step_num,path_num, p, up_down):
 
     steps = np.random.choice(a= up_down, size=step_shape,
                              p = p)
-    paths = np.concatenate([start_locs, steps]).cumsum(0)
-
-    return paths
+    return np.concatenate([start_locs, steps]).cumsum(0)
 
 up_down = [-1, 1]
 

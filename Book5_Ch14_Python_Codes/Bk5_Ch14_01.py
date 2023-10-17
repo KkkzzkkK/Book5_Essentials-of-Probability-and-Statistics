@@ -21,9 +21,7 @@ def normal_pdf_1d(x, mu,sigma):
     
     scaling = 1/sigma/np.sqrt(2*np.pi)
     z = (x - mu)/sigma
-    pdf = scaling*np.exp(-z**2/2)
-    
-    return pdf
+    return scaling*np.exp(-z**2/2)
 
 def draw_vector(vector,RBG): 
     array = np.array([[0, 0, vector[0], vector[1]]], dtype=object)
@@ -59,7 +57,7 @@ mahal_d_Xc = np.sqrt(mahal_sq_Xc)
 
 theta = -5 # -4.8575, optimal angle
 print('====================')
-print('theta = ' + str(theta))
+print(f'theta = {theta}')
 theta = theta*np.pi/180
 
 v1 = np.array([[np.cos(theta)],
@@ -76,9 +74,9 @@ mu1 = z1_1D.mean()
 std1 = z1_1D.std(ddof = 1)
 var1 = z1_1D.var(ddof = 1)
 
-print('mu1 = ' + str(mu1))
-print('std1 = ' + str(std1))
-print('var1 = ' + str(var1))
+print(f'mu1 = {str(mu1)}')
+print(f'std1 = {str(std1)}')
+print(f'var1 = {str(var1)}')
 
 x1_array = np.linspace(mu1 - 4*std1,mu1 + 4*std1,100)
 

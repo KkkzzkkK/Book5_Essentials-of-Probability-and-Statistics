@@ -8,8 +8,8 @@
 ###############
 
 import numpy as np
-import matplotlib.pyplot as plt 
-import pandas as pd  
+import matplotlib.pyplot as plt
+import pandas as pd
 from sklearn.datasets import load_iris
 from scipy.stats import norm
 import scipy
@@ -67,7 +67,7 @@ SIGMA_YX = np.matrix(SIGMA_YX)
 MU_Y = MU[3]
 MU_Y = np.matrix(MU_Y)
 
-MU_X = MU[0:3]
+MU_X = MU[:3]
 
 x_vec = np.array([[x1,x2,x3]]).T
 
@@ -165,7 +165,7 @@ plt.title('$\mu_X$')
 
 import statsmodels.api as sm
 
-X_df = X_Y_df[feature_names[0:3]]
+X_df = X_Y_df[feature_names[:3]]
 y_df = X_Y_df[feature_names[3]]
 
 # add a column of ones

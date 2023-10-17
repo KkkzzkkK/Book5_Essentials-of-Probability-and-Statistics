@@ -16,16 +16,14 @@ from scipy.stats import multivariate_normal
 from scipy.stats import norm
 from mpl_toolkits.mplot3d import axes3d
 
-def fcn_Y_given_X (mu_X, mu_Y, sigma_X, sigma_Y, rho, X, Y):
+def fcn_Y_given_X(mu_X, mu_Y, sigma_X, sigma_Y, rho, X, Y):
     
     coeff = 1/sigma_Y/np.sqrt(1 - rho**2)/np.sqrt(2*np.pi)
     sym_axis = mu_Y + rho*sigma_Y/sigma_X*(X - mu_X)
-    
+
     quad  = -1/2*((Y - sym_axis)/sigma_Y/np.sqrt(1 - rho**2))**2
-    
-    f_Y_given_X  = coeff*np.exp(quad)
-    
-    return f_Y_given_X
+
+    return coeff*np.exp(quad)
 
 # parameters
 
