@@ -157,7 +157,7 @@ var_X2 = np.var(X_df_12['sepal_width'])
 
 import pandas as pd
 
-index = ['X1 = ' + str(x1) for x1 in X1_array[0]]
+index = [f'X1 = {str(x1)}' for x1 in X1_array[0]]
 index.append('var of E_X2_given_X1')
 
 var_X2_drill_down_df = pd.DataFrame({'var':np.append(E_var_X2_given_X1_each,var_E_X2_sq_given_X1)}, index = index)
@@ -283,45 +283,45 @@ for Given_Y in Y_array:
     frequency_matrix_given_Y.columns = frequency_matrix_given_Y.columns.droplevel(0)
     frequency_matrix_given_Y = frequency_matrix_given_Y.fillna(0)
     frequency_matrix_given_Y = frequency_matrix_given_Y.iloc[::-1]
-    
+
     probability_matrix_given_Y = frequency_matrix_given_Y/frequency_matrix_given_Y.sum().sum()
-    
+
     # Conditional Marginal, sepal length X1 given Y
-    
+
     prob_sepal_length_given_Y = probability_matrix_given_Y.sum(axis = 0).to_numpy().reshape((1,-1))
-    
+
     title = 'Conditional Marginal count, probability, sepal length'
     heatmap_sum(prob_sepal_length_given_Y,[],sepal_length_array,title,0,0.4,'viridis_r')
-    
+
     E_X1_given_Y = prob_sepal_length_given_Y@sepal_length_array.reshape(-1,1)
-    print('E_X1_given_Y: ' + str(E_X1_given_Y))
-    
+    print(f'E_X1_given_Y: {str(E_X1_given_Y)}')
+
     E_X1_sq_given_Y = prob_sepal_length_given_Y@(sepal_length_array**2).reshape(-1,1)
-    print('E_X1_sq_given_Y: ' + str(E_X1_sq_given_Y))
-    
+    print(f'E_X1_sq_given_Y: {str(E_X1_sq_given_Y)}')
+
     var_X1_given_Y = E_X1_sq_given_Y - E_X1_given_Y**2
-    print('var_X1_given_Y: ' + str(var_X1_given_Y))
-    
+    print(f'var_X1_given_Y: {str(var_X1_given_Y)}')
+
     std_X1_given_Y = np.sqrt(var_X1_given_Y)
-    print('std_X1_given_Y: ' + str(std_X1_given_Y))
-    
+    print(f'std_X1_given_Y: {str(std_X1_given_Y)}')
+
     # Conditional Marginal, sepal width X2 given Y
-    
+
     prob_sepal_width_given_Y = probability_matrix_given_Y.sum(axis = 1).to_numpy().reshape((-1,1))
-    
+
     title = 'Conditional Marginal count, probability, sepal width'
     heatmap_sum(prob_sepal_width_given_Y,sepal_width_array,[],title,0,0.4,'viridis_r')
-    
+
     E_X2_given_Y = sepal_width_array.reshape(1,-1) @ prob_sepal_width_given_Y
-    print('E_X2_given_Y: ' + str(E_X2_given_Y))
-    
+    print(f'E_X2_given_Y: {str(E_X2_given_Y)}')
+
     E_X2_sq_given_Y = (sepal_width_array**2).reshape(1,-1) @ prob_sepal_width_given_Y
-    print('E_X2_sq_given_Y: ' + str(E_X2_sq_given_Y))
-    
+    print(f'E_X2_sq_given_Y: {str(E_X2_sq_given_Y)}')
+
     var_X2_given_Y = E_X2_sq_given_Y - E_X2_given_Y**2
-    print('var_X2_given_Y: ' + str(var_X2_given_Y))
-    
+    print(f'var_X2_given_Y: {str(var_X2_given_Y)}')
+
     std_X2_given_Y = np.sqrt(var_X2_given_Y)
-    print('std_X2_given_Y: ' + str(std_X2_given_Y))
-    
+    print(f'std_X2_given_Y: {str(std_X2_given_Y)}')
+
     print('====================')

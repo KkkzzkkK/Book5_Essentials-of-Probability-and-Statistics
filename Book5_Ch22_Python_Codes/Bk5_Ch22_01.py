@@ -17,12 +17,9 @@ def target_PDF(likelihood, prior, n, h, theta):
     
     if theta < 0 or theta > 1:
         return 0
-    else:
-        
-        likelihood_fcn = likelihood(n, theta).pmf(h)
-        prior_fcn = prior.pdf(theta)
-        posterior_fcn = likelihood_fcn * prior_fcn
-        return posterior_fcn
+    likelihood_fcn = likelihood(n, theta).pmf(h)
+    prior_fcn = prior.pdf(theta)
+    return likelihood_fcn * prior_fcn
 
 
 def data_generator(num_iterations, n, s, 
@@ -34,35 +31,34 @@ def data_generator(num_iterations, n, s,
     # samples = np.zeros(num_iterations + 1)
     # samples[0] = theta_0
     samples = [theta_0]
-    
+
     num_accepted = 0
-    
+
     theta_now  = theta_0
-    
-    for idx in range(num_iterations):
-        
+
+    for _ in range(num_iterations):
         delta_theta = stats.norm(0, sigma).rvs()
         theta_next  = theta_now + delta_theta
         numerator   = target_PDF(likelihood, prior, n, s, theta_next)
         denominator = target_PDF(likelihood, prior, n, s, theta_now)
-        
+
         rho = min(1, numerator/denominator)
         u_idx = np.random.uniform()
-        
+
         if u_idx < rho:
             num_accepted += 1
             theta_now = theta_next
-            
+
         # samples[idx + 1] = theta_now
         samples.append(theta_now)
-        
+
         efficiency = num_accepted/num_iterations
-    
+
     if drop_unstable:
-        
+
         nmcmc = len(samples)//2
         samples = samples[nmcmc:]
-        
+
     return samples
 
 #%% initialization

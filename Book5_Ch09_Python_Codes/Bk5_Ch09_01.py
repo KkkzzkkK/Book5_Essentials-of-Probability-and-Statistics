@@ -16,9 +16,7 @@ def uni_normal_pdf(x,mu,sigma):
     
     coeff = 1/np.sqrt(2*np.pi)/sigma
     z = (x - mu)/sigma
-    f_x = coeff*np.exp(-1/2*z**2)
-    
-    return f_x
+    return coeff*np.exp(-1/2*z**2)
 
 X  = np.arange(-5,5,0.05)
 mu = np.arange(-2,2,0.2)

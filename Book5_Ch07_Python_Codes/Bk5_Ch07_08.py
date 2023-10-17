@@ -7,7 +7,7 @@
 # Beijing, China, 2022
 ###############
 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import chi2
 from matplotlib import cm # Colormaps
@@ -23,9 +23,12 @@ colors = plt.cm.RdYlBu(np.linspace(0,1,len(DFs)))
 
 for df in DFs:
 
-    plt.plot(x, chi2.pdf(x, df = df), 
-             color = colors[int(df)-1],
-             label = "k = " + str(df))
+    plt.plot(
+        x,
+        chi2.pdf(x, df=df),
+        color=colors[int(df) - 1],
+        label=f"k = {str(df)}",
+    )
 
 plt.ylim((0, 1))
 plt.xlim((0, 10))
@@ -44,9 +47,12 @@ colors = plt.cm.RdYlBu(np.linspace(0,1,len(DFs)))
 
 for df in DFs:
 
-    plt.plot(x, chi2.cdf(x, df = df), 
-             color = colors[int(df)-1],
-             label = "k = " + str(df))
+    plt.plot(
+        x,
+        chi2.cdf(x, df=df),
+        color=colors[int(df) - 1],
+        label=f"k = {str(df)}",
+    )
 
 plt.ylim((0, 1))
 plt.xlim((0, 10))

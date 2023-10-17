@@ -24,7 +24,7 @@ fig, axs = plt.subplots(nrows=5, ncols=5, figsize=(20, 20))
 for dfn_idx, dfd_idx,ax in zip(dfn_array_.ravel(), dfd_array_.ravel(), axs.ravel()):
 
 
-    title_idx = '$d_1$ = ' + str(dfn_idx) + '; $d_2$ = ' + str(dfd_idx)
+    title_idx = f'$d_1$ = {str(dfn_idx)}; $d_2$ = {str(dfd_idx)}'
     ax.plot(x_array, f.pdf(x_array, dfn_idx, dfd_idx),
             'b', lw=1)
     ax.set_title(title_idx)
@@ -46,7 +46,7 @@ fig, axs = plt.subplots(nrows=5, ncols=5, figsize=(20, 20))
 for dfn_idx, dfd_idx,ax in zip(dfn_array_.ravel(), dfd_array_.ravel(), axs.ravel()):
 
 
-    title_idx = '$d_1$ = ' + str(dfn_idx) + '; $d_2$ = ' + str(dfd_idx)
+    title_idx = f'$d_1$ = {str(dfn_idx)}; $d_2$ = {str(dfd_idx)}'
     ax.plot(x_array, f.cdf(x_array, dfn_idx, dfd_idx),
             'b', lw=1)
     ax.set_title(title_idx)

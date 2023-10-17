@@ -28,23 +28,23 @@ for i in range(0,len(RHOs)):
     rho = RHOs[i]
     ax = fig.add_subplot(1,len(RHOs),int(i+1))
     ellipse = ((xx/sigma_X)**2 - 2*rho*(xx/sigma_X)*(yy/sigma_Y) + (yy/sigma_Y)**2)/(1 - rho**2);
-    
+
     plt.contour(xx,yy,ellipse,levels = [1], colors = '#0099FF')
 
     A = (sigma_X**2 + sigma_Y**2)/2
     B = np.sqrt((rho*sigma_X*sigma_Y)**2 + ((sigma_X**2 - sigma_Y**2)/2)**2)
     length_major = np.sqrt(A + B)
     length_minor = np.sqrt(A - B)
-    
+
     if sigma_X == sigma_Y and rho >= 0:
         theta = 45
 
-    elif sigma_X == sigma_Y and rho < 0:
+    elif sigma_X == sigma_Y:
         theta = -45
     else:
         theta = 1/2*np.arctan(2*rho*sigma_X*sigma_Y/(sigma_X**2 - sigma_Y**2))
         theta = theta*180/np.pi
-    
+
     if sigma_X >= sigma_Y:
         rect = Rectangle([-length_major, -length_minor] , 
                          width = 2*length_major, 
@@ -57,7 +57,7 @@ for i in range(0,len(RHOs)):
                          height = 2*length_major,
                          edgecolor = 'k',facecolor="none",
                          transform=Affine2D().rotate_deg_around(*(0,0), theta)+ax.transData)
-    
+
     ax.add_patch(rect)
 
     X = np.linspace(-2.5,2.5,101)

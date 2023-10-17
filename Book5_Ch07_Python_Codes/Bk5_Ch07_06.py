@@ -16,12 +16,10 @@ from scipy.stats import norm, lognorm
 def logn_pdf(x,mu,sigma):
     
     scaling = 1/x/sigma/np.sqrt(2*np.pi)
-    
+
     exp_part = np.exp(-(np.log(x) - mu)**2/2/sigma**2)
-    
-    pdf = scaling*exp_part
-    
-    return pdf
+
+    return scaling*exp_part
 
 
 width = 4

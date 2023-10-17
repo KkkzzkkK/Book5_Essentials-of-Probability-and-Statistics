@@ -55,9 +55,13 @@ k_range = np.arange(1,16)
 fig, ax = plt.subplots()
 
 for p in [0.4,0.5,0.6,0.7,0.8]:
-    plt.plot(k_range, geom.pmf(k_range, p), 
-             marker = 'x',markersize = 12,
-             label = 'p = ' + str(p))
+    plt.plot(
+        k_range,
+        geom.pmf(k_range, p),
+        marker='x',
+        markersize=12,
+        label=f'p = {str(p)}',
+    )
 
 plt.xlabel('x')
 plt.ylabel('PMF')

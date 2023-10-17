@@ -17,9 +17,7 @@ def uni_normal_pdf(x,mu,sigma):
     
     coeff = 1/np.sqrt(2*np.pi)/sigma
     z = (x - mu)/sigma
-    f_x = coeff*np.exp(-1/2*z**2)
-    
-    return f_x
+    return coeff*np.exp(-1/2*z**2)
 
 x_array = np.linspace(-5,5,200)
 

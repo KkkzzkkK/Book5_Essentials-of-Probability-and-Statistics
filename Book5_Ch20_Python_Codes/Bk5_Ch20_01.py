@@ -92,23 +92,23 @@ colors = cm.rainbow_r(np.linspace(0, 1, len(num_animals_array)))
 
 fig, ax = plt.subplots(figsize=(8, 30))
 
+ratio = 1.2
 for idx, num_animals_idx in enumerate(num_animals_array):
     
     height = num_animals_idx
     # random data generator
-    data_idx = Data_all_trials[0:num_animals_idx]
+    data_idx = Data_all_trials[:num_animals_idx]
     # actual percentage of rabbits is 30%
 
     num_rabbits_idx = data_idx.sum() # s
     posterior_pdf = beta_dist.pdf(theta_array, 
                       num_rabbits_idx + alpha,  # s + alpha
                       num_animals_idx - num_rabbits_idx + alpha) # n - s + alpha
-    
-    ratio = 1.2
+
     ax.plot(theta_array, 
             posterior_pdf * ratio + height, 
             color = [0.6,0.6,0.6])
-    
+
     ax.fill_between(theta_array, height, 
                     posterior_pdf * ratio + height, 
                     color=colors[idx])
@@ -128,22 +128,22 @@ fig, axs = plt.subplots(nrows=3, ncols=3, figsize=(20, 20))
 for ax_idx, num_animals_idx in zip(axs.ravel(), num_animals_array):
     
     # random data generator
-    data_idx = Data_all_trials[0:num_animals_idx]
+    data_idx = Data_all_trials[:num_animals_idx]
     # actual percentage of rabbits is 30%
 
     num_rabbits_idx = data_idx.sum() # s
     posterior_pdf = beta_dist.pdf(theta_array, 
                       num_rabbits_idx + alpha,  # s + alpha
                       num_animals_idx - num_rabbits_idx + alpha) # n - s + alpha
-    
+
     loc_max = theta_array[np.argmax(posterior_pdf)]
     # location of MAP
-    
+
     ax_idx.plot(theta_array, posterior_pdf)
     ax_idx.axvline(x = loc_max, color = 'r', linestyle = '--')
     ax_idx.set_title("Number of animals: %d; number of rabbits: %d" 
               % (num_animals_idx, num_rabbits_idx))
-    
+
     ax_idx.set_xlabel('Percentage of rabbits, $\u03B8$')
     ax_idx.fill_between(theta_array, 0, posterior_pdf, color="#DEEAF6")
     ax_idx.axvline(x = true_percentage, color = 'k', linestyle = '--')

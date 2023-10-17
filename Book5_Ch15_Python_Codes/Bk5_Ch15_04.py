@@ -40,12 +40,10 @@ def est_pi(n):
     X = np.random.uniform(-1, 1, size = (int(n),2))
     x = X[:,0]
     y = X[:,1]
-    
+
     masks = np.sqrt(x**2 + y**2) < 1
-    
-    pi_est = 4 * sum(masks)/len(x)
-    
-    return pi_est
+
+    return 4 * sum(masks)/len(x)
 
 n_array = np.linspace(1000,1000*100,100)
 

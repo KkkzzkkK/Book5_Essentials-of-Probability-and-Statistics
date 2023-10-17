@@ -9,7 +9,7 @@
 
 
 import numpy as np
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 from scipy.stats.distributions import chi2
 
 intervals = np.linspace(0.9, 0.99, 11);
@@ -28,8 +28,8 @@ fig, ax = plt.subplots(figsize=(8, 8))
 for df in [1,2,3,4,5,6]:
     
     prob_x_df_D = chi2.cdf(x**2, df=df)
-    
-    plt.plot(x,prob_x_df_D, label = 'df = ' + str(df))
+
+    plt.plot(x, prob_x_df_D, label=f'df = {str(df)}')
 
 plt.grid(color = (0.8,0.8,0.8))
 plt.legend()
